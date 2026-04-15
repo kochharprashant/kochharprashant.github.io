@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ellie is turning ONE!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600;700&family=Pacifico&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5e6d3;
+      padding: 20px;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .card {
+      width: 500px;
+      max-width: 95vw;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.15),
+        0 5px 20px rgba(0,0,0,0.1);
+      position: relative;
+      transform: rotate(-2deg);
+    }
+
+    /* Sky section */
+    .sky {
+      background: linear-gradient(180deg, #a8d8ea 0%, #c5e8f5 40%, #daf0f7 100%);
+      padding: 30px 30px 0;
+      position: relative;
+      text-align: center;
+      min-height: 300px;
+    }
+
+    /* Clouds */
+    .cloud {
+      position: absolute;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50px;
+    }
+    .cloud::before, .cloud::after {
+      content: '';
+      position: absolute;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50%;
+    }
+    .cloud-1 {
+      width: 80px; height: 30px;
+      top: 20px; left: 15%;
+    }
+    .cloud-1::before {
+      width: 40px; height: 40px;
+      top: -20px; left: 10px;
+    }
+    .cloud-1::after {
+      width: 30px; height: 30px;
+      top: -15px; left: 40px;
+    }
+    .cloud-2 {
+      width: 100px; height: 35px;
+      top: 50px; right: 10%;
+    }
+    .cloud-2::before {
+      width: 50px; height: 50px;
+      top: -25px; left: 15px;
+    }
+    .cloud-2::after {
+      width: 35px; height: 35px;
+      top: -18px; left: 55px;
+    }
+    .cloud-3 {
+      width: 70px; height: 25px;
+      top: 100px; left: 5%;
+    }
+    .cloud-3::before {
+      width: 35px; height: 35px;
+      top: -18px; left: 8px;
+    }
+    .cloud-3::after {
+      width: 25px; height: 25px;
+      top: -12px; left: 35px;
+    }
+    .cloud-4 {
+      width: 60px; height: 22px;
+      top: 140px; right: 5%;
+    }
+    .cloud-4::before {
+      width: 30px; height: 30px;
+      top: -15px; left: 5px;
+    }
+    .cloud-4::after {
+      width: 22px; height: 22px;
+      top: -10px; left: 28px;
+    }
+
+    /* Bunting / Banner */
+    .bunting {
+      position: absolute;
+      top: 8px;
+      left: 0;
+      right: 0;
+      height: 50px;
+    }
+    .bunting svg {
+      width: 100%;
+      height: 50px;
+    }
+
+    /* Title text */
+    .title-section {
+      position: relative;
+      z-index: 2;
+      padding-top: 40px;
+    }
+
+    .name {
+      font-family: 'Pacifico', cursive;
+      font-size: 48px;
+      color: #4a90a4;
+      text-shadow: 1px 2px 3px rgba(0,0,0,0.1);
+      line-height: 1;
+    }
+
+    .is-turning {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 18px;
+      color: #7fb3c4;
+      font-weight: 600;
+      font-style: italic;
+      margin: 5px 0;
+    }
+
+    .age {
+      font-family: 'Fredoka One', cursive;
+      font-size: 64px;
+      color: #e8b64a;
+      text-shadow: 2px 3px 0 rgba(0,0,0,0.08);
+      line-height: 1;
+    }
+
+    /* Characters */
+    .characters {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 15px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Pig character (CSS drawn) */
+    .pig-character {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Main pig (center) */
+    .pig-main .pig-body {
+      width: 70px;
+      height: 55px;
+      background: #f7a4b8;
+      border-radius: 50% 50% 45% 45%;
+      position: relative;
+    }
+    .pig-main .pig-head {
+      width: 50px;
+      height: 55px;
+      background: #f7a4b8;
+      border-radius: 50% 50% 45% 45%;
+      position: relative;
+      margin-bottom: -10px;
+      z-index: 3;
+    }
+    .pig-main .pig-head .eye {
+      width: 6px;
+      height: 8px;
+      background: #333;
+      border-radius: 50%;
+      position: absolute;
+      top: 20px;
+    }
+    .pig-main .pig-head .eye-left { left: 14px; }
+    .pig-main .pig-head .eye-right { right: 14px; }
+    .pig-main .pig-head .snout {
+      width: 20px;
+      height: 14px;
+      background: #f08da0;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .pig-main .pig-head .snout::before,
+    .pig-main .pig-head .snout::after {
+      content: '';
+      width: 4px;
+      height: 5px;
+      background: #d4758a;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .pig-main .pig-head .snout::before { left: 4px; }
+    .pig-main .pig-head .snout::after { right: 4px; }
+    .pig-main .pig-ear {
+      width: 14px;
+      height: 20px;
+      background: #f7a4b8;
+      border-radius: 50% 50% 0 0;
+      position: absolute;
+      top: -12px;
+    }
+    .pig-main .pig-ear-left { left: 6px; transform: rotate(-15deg); }
+    .pig-main .pig-ear-right { right: 6px; transform: rotate(15deg); }
+
+    /* Crown on main pig */
+    .crown {
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+    }
+    .crown svg {
+      width: 30px;
+      height: 22px;
+    }
+
+    /* Red dress on main pig */
+    .pig-main .dress {
+      width: 70px;
+      height: 40px;
+      background: #e85050;
+      border-radius: 10px 10px 50% 50%;
+      margin-top: -15px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Pig legs */
+    .pig-legs {
+      display: flex;
+      gap: 15px;
+      margin-top: -2px;
+    }
+    .pig-leg {
+      width: 8px;
+      height: 18px;
+      background: #f7a4b8;
+      border-radius: 0 0 4px 4px;
+    }
+    .pig-shoe {
+      width: 14px;
+      height: 6px;
+      background: #333;
+      border-radius: 0 0 6px 6px;
+      margin-top: -1px;
+    }
+
+    /* Small pig (left) */
+    .pig-small .pig-head {
+      width: 36px;
+      height: 40px;
+      background: #fce4c8;
+      border-radius: 50% 50% 45% 45%;
+      position: relative;
+      margin-bottom: -8px;
+      z-index: 3;
+    }
+    .pig-small .pig-head .eye {
+      width: 4px;
+      height: 6px;
+      background: #333;
+      border-radius: 50%;
+      position: absolute;
+      top: 15px;
+    }
+    .pig-small .pig-head .eye-left { left: 10px; }
+    .pig-small .pig-head .eye-right { right: 10px; }
+    .pig-small .pig-head .snout {
+      width: 14px;
+      height: 10px;
+      background: #f0c9a0;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .pig-small .pig-head .snout::before,
+    .pig-small .pig-head .snout::after {
+      content: '';
+      width: 3px;
+      height: 4px;
+      background: #d4a87a;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .pig-small .pig-head .snout::before { left: 3px; }
+    .pig-small .pig-head .snout::after { right: 3px; }
+    .pig-small .pig-ear {
+      width: 10px;
+      height: 15px;
+      background: #fce4c8;
+      border-radius: 50% 50% 0 0;
+      position: absolute;
+      top: -8px;
+    }
+    .pig-small .pig-ear-left { left: 4px; transform: rotate(-15deg); }
+    .pig-small .pig-ear-right { right: 4px; transform: rotate(15deg); }
+    .pig-small .dress {
+      width: 50px;
+      height: 30px;
+      background: #f5943a;
+      border-radius: 8px 8px 50% 50%;
+      margin-top: -10px;
+      z-index: 1;
+      position: relative;
+    }
+    .pig-small .pig-legs {
+      gap: 10px;
+    }
+    .pig-small .pig-leg {
+      width: 6px;
+      height: 14px;
+      background: #fce4c8;
+    }
+    .pig-small .pig-shoe {
+      width: 11px;
+      height: 5px;
+    }
+
+    /* Elephant character (right) */
+    .elephant .head {
+      width: 40px;
+      height: 42px;
+      background: #b0b0b8;
+      border-radius: 50%;
+      position: relative;
+      margin-bottom: -8px;
+      z-index: 3;
+    }
+    .elephant .head .eye {
+      width: 4px;
+      height: 6px;
+      background: #333;
+      border-radius: 50%;
+      position: absolute;
+      top: 14px;
+    }
+    .elephant .head .eye-left { left: 10px; }
+    .elephant .head .eye-right { right: 10px; }
+    .elephant .head .trunk {
+      width: 8px;
+      height: 20px;
+      background: #b0b0b8;
+      border-radius: 0 0 8px 8px;
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .elephant .ear {
+      width: 16px;
+      height: 20px;
+      background: #b0b0b8;
+      border-radius: 50%;
+      position: absolute;
+      top: 8px;
+    }
+    .elephant .ear-left { left: -6px; }
+    .elephant .ear-right { right: -6px; }
+    .elephant .party-hat {
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 20px solid #e85050;
+    }
+    .elephant .party-hat::after {
+      content: '';
+      position: absolute;
+      bottom: -23px;
+      left: -12px;
+      width: 24px;
+      height: 6px;
+      background: repeating-linear-gradient(90deg, #f5d63d 0, #f5d63d 4px, #e85050 4px, #e85050 8px);
+      border-radius: 2px;
+    }
+    .elephant .dress {
+      width: 50px;
+      height: 30px;
+      background: #f5d63d;
+      border-radius: 8px 8px 50% 50%;
+      margin-top: -10px;
+      z-index: 1;
+      position: relative;
+    }
+    .elephant .dress .polka::before,
+    .elephant .dress .polka::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 50%;
+      position: absolute;
+    }
+    .elephant .dress .polka::before { top: 8px; left: 12px; }
+    .elephant .dress .polka::after { top: 16px; right: 12px; }
+    .elephant .legs {
+      display: flex;
+      gap: 10px;
+      margin-top: -2px;
+    }
+    .elephant .leg {
+      width: 7px;
+      height: 14px;
+      background: #b0b0b8;
+      border-radius: 0 0 4px 4px;
+    }
+    .elephant .shoe {
+      width: 11px;
+      height: 5px;
+      background: #333;
+      border-radius: 0 0 5px 5px;
+      margin-top: -1px;
+    }
+
+    /* Gift box for elephant */
+    .gift {
+      width: 22px;
+      height: 18px;
+      background: #f5d63d;
+      border-radius: 2px;
+      position: absolute;
+      right: -20px;
+      bottom: 15px;
+      z-index: 4;
+    }
+    .gift::before {
+      content: '';
+      width: 4px;
+      height: 100%;
+      background: #e85050;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .gift::after {
+      content: '';
+      width: 100%;
+      height: 4px;
+      background: #e85050;
+      position: absolute;
+      top: 0;
+      border-radius: 2px 2px 0 0;
+    }
+
+    /* Stars */
+    .stars {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      z-index: 1;
+    }
+    .star {
+      position: absolute;
+      color: rgba(232, 182, 74, 0.4);
+      font-size: 10px;
+    }
+
+    /* Grass section */
+    .grass {
+      background: linear-gradient(180deg, #b8dba8 0%, #8cc477 30%, #7ab86a 100%);
+      padding: 30px 30px 35px;
+      text-align: center;
+      position: relative;
+    }
+
+    .grass::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: 0;
+      right: 0;
+      height: 20px;
+      background: linear-gradient(180deg, #c5e0b8, #b8dba8);
+      border-radius: 0 0 50% 50% / 0 0 100% 100%;
+    }
+
+    /* Sparkle dots on grass */
+    .sparkles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+    }
+    .sparkle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: rgba(255,255,255,0.4);
+      border-radius: 50%;
+    }
+
+    .details {
+      position: relative;
+      z-index: 2;
+    }
+
+    .join-text {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 16px;
+      color: #3a6b3a;
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    .detail-line {
+      font-family: 'Fredoka One', cursive;
+      font-size: 20px;
+      color: #2d5a2d;
+      margin: 4px 0;
+      line-height: 1.4;
+    }
+
+    .detail-line.date {
+      font-size: 22px;
+    }
+
+    .detail-line.venue {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    .detail-line.city {
+      font-size: 18px;
+      color: #3a6b3a;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+    }
+
+    .rsvp {
+      margin-top: 14px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 15px;
+      color: #3a6b3a;
+      font-weight: 600;
+    }
+
+    /* Rainbow arc behind main pig */
+    .rainbow-arc {
+      position: absolute;
+      width: 130px;
+      height: 65px;
+      border: 3px solid rgba(255,255,255,0.5);
+      border-bottom: none;
+      border-radius: 130px 130px 0 0;
+      bottom: 45px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 520px) {
+      .card { width: 100%; transform: rotate(0); }
+      .name { font-size: 38px; }
+      .age { font-size: 50px; }
+      .sky { padding: 25px 20px 0; min-height: 260px; }
+      .grass { padding: 25px 20px 30px; }
+      .detail-line { font-size: 18px; }
+      .detail-line.date { font-size: 20px; }
+    }
+
+    /* Print styles */
+    @media print {
+      body { background: white; padding: 0; }
+      .card { box-shadow: none; transform: none; border: 1px solid #ccc; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <!-- Sky Section -->
+  <div class="sky">
+    <!-- Clouds -->
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    <div class="cloud cloud-4"></div>
+
+    <!-- Bunting Banner -->
+    <div class="bunting">
+      <svg viewBox="0 0 500 50" preserveAspectRatio="none">
+        <!-- String -->
+        <path d="M0,8 Q125,20 250,12 Q375,4 500,15" stroke="#999" stroke-width="1" fill="none"/>
+        <!-- Flags -->
+        <polygon points="60,10 50,35 70,35" fill="#e85050"/>
+        <polygon points="100,13 90,38 110,38" fill="#4a90a4"/>
+        <polygon points="140,15 130,40 150,40" fill="#8cc477"/>
+        <polygon points="180,14 170,39 190,39" fill="#f5d63d"/>
+        <polygon points="220,12 210,37 230,37" fill="#e85050"/>
+        <polygon points="260,12 250,37 270,37" fill="#a78dc4"/>
+        <polygon points="300,13 290,38 310,38" fill="#4a90a4"/>
+        <polygon points="340,14 330,39 350,39" fill="#8cc477"/>
+        <polygon points="380,16 370,41 390,41" fill="#f5d63d"/>
+        <polygon points="420,15 410,40 430,40" fill="#e85050"/>
+        <polygon points="460,13 450,38 470,38" fill="#a78dc4"/>
+      </svg>
+    </div>
+
+    <!-- Title -->
+    <div class="title-section">
+      <div class="name">Ellie</div>
+      <div class="is-turning">is turning</div>
+      <div class="age">ONE!</div>
+    </div>
+
+    <!-- Rainbow arc -->
+    <div class="rainbow-arc"></div>
+
+    <!-- Characters -->
+    <div class="characters">
+      <!-- Small pig (left - like Peppa's friend) -->
+      <div class="pig-character pig-small" style="margin-bottom: 5px;">
+        <div class="pig-head">
+          <div class="pig-ear pig-ear-left"></div>
+          <div class="pig-ear pig-ear-right"></div>
+          <div class="eye eye-left"></div>
+          <div class="eye eye-right"></div>
+          <div class="snout"></div>
+        </div>
+        <div class="dress"></div>
+        <div class="pig-legs">
+          <div><div class="pig-leg"></div><div class="pig-shoe"></div></div>
+          <div><div class="pig-leg"></div><div class="pig-shoe"></div></div>
+        </div>
+      </div>
+
+      <!-- Main pig (center - like Peppa) -->
+      <div class="pig-character pig-main">
+        <div class="pig-head">
+          <div class="crown">
+            <svg viewBox="0 0 30 22" fill="#f5d63d">
+              <polygon points="2,22 5,8 9,16 15,2 21,16 25,8 28,22"/>
+            </svg>
+          </div>
+          <div class="pig-ear pig-ear-left"></div>
+          <div class="pig-ear pig-ear-right"></div>
+          <div class="eye eye-left"></div>
+          <div class="eye eye-right"></div>
+          <div class="snout"></div>
+        </div>
+        <div class="dress"></div>
+        <div class="pig-legs">
+          <div><div class="pig-leg"></div><div class="pig-shoe"></div></div>
+          <div><div class="pig-leg"></div><div class="pig-shoe"></div></div>
+        </div>
+      </div>
+
+      <!-- Elephant character (right) -->
+      <div class="pig-character elephant" style="margin-bottom: 5px; position: relative;">
+        <div class="head">
+          <div class="party-hat"></div>
+          <div class="ear ear-left"></div>
+          <div class="ear ear-right"></div>
+          <div class="eye eye-left"></div>
+          <div class="eye eye-right"></div>
+          <div class="trunk"></div>
+        </div>
+        <div class="dress">
+          <div class="polka"></div>
+        </div>
+        <div class="gift"></div>
+        <div class="legs">
+          <div><div class="leg"></div><div class="shoe"></div></div>
+          <div><div class="leg"></div><div class="shoe"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stars scattered on the transition -->
+    <div class="stars">
+      <span class="star" style="left:10%; bottom:40%">&#10022;</span>
+      <span class="star" style="left:25%; bottom:20%">&#10022;</span>
+      <span class="star" style="left:40%; bottom:50%">&#10022;</span>
+      <span class="star" style="left:55%; bottom:15%">&#10022;</span>
+      <span class="star" style="left:70%; bottom:45%">&#10022;</span>
+      <span class="star" style="left:85%; bottom:30%">&#10022;</span>
+      <span class="star" style="left:15%; bottom:10%">&#10022;</span>
+      <span class="star" style="left:65%; bottom:55%">&#10022;</span>
+      <span class="star" style="left:90%; bottom:50%">&#10022;</span>
+      <span class="star" style="left:35%; bottom:35%">&#10022;</span>
+    </div>
+  </div>
+
+  <!-- Grass Section (Details) -->
+  <div class="grass">
+    <div class="sparkles">
+      <div class="sparkle" style="top:15%; left:10%"></div>
+      <div class="sparkle" style="top:30%; left:25%"></div>
+      <div class="sparkle" style="top:20%; left:50%"></div>
+      <div class="sparkle" style="top:45%; left:75%"></div>
+      <div class="sparkle" style="top:35%; left:90%"></div>
+      <div class="sparkle" style="top:60%; left:15%"></div>
+      <div class="sparkle" style="top:55%; left:60%"></div>
+      <div class="sparkle" style="top:70%; left:40%"></div>
+      <div class="sparkle" style="top:50%; left:85%"></div>
+    </div>
+
+    <div class="details">
+      <div class="join-text">Join us for a fun-filled celebration!</div>
+      <div class="detail-line date">Saturday, 12th July</div>
+      <div class="detail-line">3:00 PM</div>
+      <div class="detail-line venue" style="margin-top:12px;">Happy Kids Garden</div>
+      <div class="detail-line city">Florence</div>
+      <div class="rsvp">RSVP: 746 890 890</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
